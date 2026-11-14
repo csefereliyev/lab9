@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Ana Səhifə";
+}
+
+<style>
+    body {
+        background-color: #1b2838;
+        color: #c7d5e0;
+    }
+
+    .steam-hero {
+        background: linear-gradient(135deg, #171a21 0%, #1b2838 50%, #2a475e 100%);
+        border: 1px solid #2a475e;
+        border-radius: 8px;
+        padding: 3.5rem 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-steam-primary {
+        background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+        color: #ffffff;
+        font-weight: 600;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 4px;
+        transition: transform 0.2s, opacity 0.2s;
+    }
+
+        .btn-steam-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+    .btn-steam-secondary {
+        background-color: #2a475e;
+        color: #66c0f4;
+        font-weight: 600;
+        border: 1px solid #3d6c8e;
+        padding: 12px 28px;
+        border-radius: 4px;
+    }
+
+        .btn-steam-secondary:hover {
+            background-color: #66c0f4;
+            color: #171a21;
+        }
+
+    .feature-box {
+        background-color: #16202d;
+        border: 1px solid #2a475e;
+        border-radius: 6px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: border-color 0.2s;
+    }
+
+        .feature-box:hover {
+            border-color: #66c0f4;
+        }
+</style>
+
+<div class="container py-4">
+    <!-- Əsas Vitrin (Hero Banner) -->
+    <div class="steam-hero text-center mb-5">
+        <span class="badge bg-info text-dark mb-3 px-3 py-2 fw-bold">RƏQƏMSAL OYUN PLATFORMASI</span>
+        <h1 class="display-5 fw-bold text-white mb-3">Sevimli Oyunlarını Kəşf Et və İdarə Et</h1>
+        <p class="lead mx-auto mb-4" style="max-width: 680px; color: #8f98a0;">
+            Ən yeni PC oyunları, mövsümi endirimlər və şəxsi oyun kataloqunuz bir platformada.
+            Mağazaya keçid edərək oyunlara baxa və ya kataloqa yeni oyunlar əlavə edə bilərsiniz.
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a asp-controller="Games" asp-action="Index" class="btn btn-steam-primary">
+                Oyun Mağazasına Keçid
+            </a>
+            <a asp-controller="Games" asp-action="Create" class="btn btn-steam-secondary">
+                + Yeni Oyun Əlavə Et
+            </a>
+        </div>
+    </div>
+
+    <!-- Platforma İmkanları -->
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5 class="text-white fw-bold mb-2">Geniş Oyun Kataloqu</h5>
+                <p class="small mb-0" style="color: #8f98a0;">
+                    Action, RPG, Strategy və digər janrlarda oyunları vahid siyahıda izləyin və qiymətləri müqayisə edin.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5 class="text-white fw-bold mb-2">Xüsusi Endirim Sistemi</h5>
+                <p class="small mb-0" style="color: #8f98a0;">
+                    Oyunlara tətbiq olunan endirim faizləri avtomatik hesablanır və yekun mağaza qiyməti dərhal əks olunur.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <h5 class="text-white fw-bold mb-2">Tam İdarəetmə (CRUD)</h5>
+                <p class="small mb-0" style="color: #8f98a0;">
+                    Yeni oyunlar əlavə edin, mövcud oyunların qiymət və təsvir məlumatlarını yeniləyin və ya siyahıdan çıxarın.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

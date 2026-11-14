@@ -1,0 +1,39 @@
+﻿@model Helpdeskweb.Models.Game
+
+@{
+    ViewData["Title"] = "Oyunu Sil";
+}
+
+<style>
+    body {
+        background-color: #1b2838;
+        color: #c7d5e0;
+    }
+
+    .steam-delete-card {
+        background-color: #16202d;
+        border: 1px solid #dc3545;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card steam-delete-card p-4 shadow">
+                <h4 class="text-danger fw-bold mb-3">Oyunu silmək istədiyinizə əminsiniz?</h4>
+                <p class="text-light">Bu əməliyyat geri qaytarıla bilməz. Aşağıdakı oyun bazadan tamamilə silinəcək:</p>
+
+                <div class="p-3 rounded mb-4" style="background-color: #0f1722;">
+                    <h5 class="text-white mb-1">@Model.Title</h5>
+                    <div class="small text-info">Janr: @Model.Genre | Qiymət: $@Model.Price.ToString("0.00")</div>
+                </div>
+
+                <form asp-action="Delete" method="post" class="d-flex justify-content-between">
+                    <input type="hidden" asp-for="Id" />
+                    <a asp-action="Index" class="btn btn-outline-light">Xeyr, Geri Qayıt</a>
+                    <button type="submit" class="btn btn-danger fw-bold px-4">Bəli, Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

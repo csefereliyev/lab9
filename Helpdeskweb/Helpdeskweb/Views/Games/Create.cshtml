@@ -1,0 +1,106 @@
+﻿@model Helpdeskweb.Models.Game
+
+@{
+    ViewData["Title"] = "Yeni Oyun Əlavə Et";
+}
+
+<style>
+    body {
+        background-color: #1b2838;
+        color: #c7d5e0;
+    }
+
+    .steam-form-card {
+        background-color: #16202d;
+        border: 1px solid #2a475e;
+    }
+
+    .form-control, .form-select {
+        background-color: #2a475e;
+        border: 1px solid #3d6c8e;
+        color: #ffffff;
+    }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #2a475e;
+            color: #ffffff;
+            border-color: #66c0f4;
+            box-shadow: none;
+        }
+</style>
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card steam-form-card p-4 shadow">
+                <h3 class="text-white fw-bold mb-4 border-bottom border-secondary pb-2">Yeni Oyun Əlavə Et</h3>
+
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label text-info">Oyun Adı</label>
+                        <input asp-for="Title" class="form-control" placeholder="Məs: Cyberpunk 2077" />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Genre" class="form-label text-info">Janr</label>
+                            <select asp-for="Genre" class="form-select">
+                                <option value="">-- Janr seçin --</option>
+                                <option value="Action">Action</option>
+                                <option value="RPG">RPG</option>
+                                <option value="Strategy">Strategy</option>
+                                <option value="Shooter">Shooter</option>
+                                <option value="Simulation">Simulation</option>
+                                <option value="Sports">Sports</option>
+                            </select>
+                            <span asp-validation-for="Genre" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Platform" class="form-label text-info">Platforma</label>
+                            <select asp-for="Platform" class="form-select">
+                                <option value="PC">PC (Windows)</option>
+                                <option value="PC / Mac">PC / Mac</option>
+                                <option value="SteamOS / Linux">SteamOS / Linux</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Price" class="form-label text-info">Qiymət ($)</label>
+                            <input asp-for="Price" type="number" step="0.01" class="form-control" value="0" />
+                            <span asp-validation-for="Price" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DiscountPercent" class="form-label text-info">Endirim Faizi (%)</label>
+                            <input asp-for="DiscountPercent" type="number" class="form-control" value="0" />
+                            <span asp-validation-for="DiscountPercent" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Description" class="form-label text-info">Oyun Haqqında Təsvir</label>
+                        <textarea asp-for="Description" rows="4" class="form-control" placeholder="Oyunun süjeti və əsas xüsusiyyətləri..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary text-light">Geri Qayıt</a>
+                        <button type="submit" class="btn btn-info fw-bold px-4">Yadda Saxla</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

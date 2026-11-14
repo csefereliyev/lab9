@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Helpdeskweb.Models.Game>
+
+@{
+    ViewData["Title"] = "Oyun Mağazası";
+}
+
+<style>
+    body { background-color: #1b2838; color: #c7d5e0; }
+    .steam-header { background: linear-gradient(90deg, #171a21 0%, #1b2838 100%); border-bottom: 1px solid #2a475e; }
+    .game-card { background-color: #16202d; border: 1px solid #2a475e; transition: transform 0.2s, border-color 0.2s; }
+    .game-card:hover { transform: translateY(-4px); border-color: #66c0f4; }
+    .discount-badge { background-color: #4c6b22; color: #beee11; font-weight: bold; padding: 4px 8px; border-radius: 3px; }
+    .price-box { background-color: #0000004d; padding: 4px 10px; border-radius: 3px; }
+    .btn-steam { background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%); color: white; border: none; }
+    .btn-steam:hover { opacity: 0.9; color: white; }
+</style>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center p-4 mb-4 rounded steam-header">
+        <div>
+            <h2 class="text-white fw-bold mb-1">Oyun Kataloqu</h2>
+            <p class="mb-0 text-info">Seçilmiş rəqəmsal oyunlar və xüsusi endirimlər</p>
+        </div>
+        <a asp-action="Create" class="btn btn-steam fw-bold px-4 py-2">+ Yeni Oyun Əlavə Et</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-dark border-info text-center py-5" style="background-color: #16202d; color: #c7d5e0;">
+            <h5>Mağazada hələ heç bir oyun yoxdur.</h5>
+            <p class="mb-3">İlk oyunu əlavə etmək üçün yuxarıdakı düymədən istifadə edin.</p>
+            <a asp-action="Create" class="btn btn-steam">Oyun Əlavə Et</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var finalPrice = item.Price - (item.Price * item.DiscountPercent / 100m);
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 game-card shadow">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-secondary">@item.Genre</span>
+                                <small class="text-info">@item.Platform</small>
+                            </div>
+                            <h5 class="card-title text-white fw-bold">@item.Title</h5>
+                            <p class="card-text small flex-grow-1" style="color: #8f98a0;">
+                                @(item.Description.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
+                                <div class="d-flex align-items-center gap-2">
+                                    @if (item.DiscountPercent > 0)
+                                    {
+                                        <span class="discount-badge">-@item.DiscountPercent%</span>
+                                        <div class="price-box text-end">
+                                            <small class="text-decoration-line-through text-muted d-block" style="font-size: 0.75rem;">$@item.Price.ToString("0.00")</small>
+                                            <span class="text-white fw-bold">$@finalPrice.ToString("0.00")</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="price-box">
+                                            <span class="text-white fw-bold">@(item.Price == 0 ? "Pulsuz" : "$" + item.Price.ToString("0.00"))</span>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="btn-group btn-group-sm">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info">Bax</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Düzəliş</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

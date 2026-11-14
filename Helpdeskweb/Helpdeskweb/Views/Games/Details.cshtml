@@ -1,0 +1,58 @@
+﻿@model Helpdeskweb.Models.Game
+
+@{
+    ViewData["Title"] = Model.Title;
+    var finalPrice = Model.Price - (Model.Price * Model.DiscountPercent / 100m);
+}
+
+<style>
+    body {
+        background-color: #1b2838;
+        color: #c7d5e0;
+    }
+
+    .steam-detail-card {
+        background-color: #16202d;
+        border: 1px solid #2a475e;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="card steam-detail-card p-4 shadow">
+        <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 mb-3">
+            <div>
+                <h2 class="text-white fw-bold mb-1">@Model.Title</h2>
+                <span class="badge bg-info text-dark me-2">@Model.Genre</span>
+                <span class="badge bg-secondary">@Model.Platform</span>
+            </div>
+            <div class="text-end">
+                <small class="text-muted d-block">Əlavə olunma tarixi</small>
+                <span class="text-light">@Model.ReleaseDate.ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+        </div>
+
+        <p class="lead fs-6 mb-4" style="line-height: 1.7;">@Model.Description</p>
+
+        <div class="p-3 rounded mb-4 d-flex justify-content-between align-items-center" style="background-color: #0f1722;">
+            <div>
+                <span class="text-muted">Mağaza Qiyməti:</span>
+                @if (Model.DiscountPercent > 0)
+                {
+                    <span class="badge bg-success ms-2">-@Model.DiscountPercent% Endirim</span>
+                    <span class="text-decoration-line-through text-muted ms-2">$@Model.Price.ToString("0.00")</span>
+                    <span class="fs-4 text-white fw-bold ms-2">$@finalPrice.ToString("0.00")</span>
+                }
+                else
+                {
+                    <span class="fs-4 text-white fw-bold ms-2">@(Model.Price == 0 ? "Pulsuz" : "$" + Model.Price.ToString("0.00"))</span>
+                }
+            </div>
+            <button type="button" class="btn btn-success fw-bold px-4" onclick="alert('@Model.Title səbətə əlavə edildi!')">Səbətə At</button>
+        </div>
+
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Redaktə Et</a>
+            <a asp-action="Index" class="btn btn-outline-light">Kataloqa Qayıt</a>
+        </div>
+    </div>
+</div>

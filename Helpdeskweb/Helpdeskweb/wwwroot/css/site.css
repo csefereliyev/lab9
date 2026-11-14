@@ -1,0 +1,123 @@
+﻿/* =========================================
+   STEAM ÜSLUBUNDA QLOBAL DİZAYN (VORTEX STORE)
+   ========================================= */
+
+:root {
+    --steam-bg-dark: #171a21;
+    --steam-bg-main: #1b2838;
+    --steam-card-bg: #16202d;
+    --steam-border: #2a475e;
+    --steam-accent-blue: #66c0f4;
+    --steam-text-main: #c7d5e0;
+    --steam-text-muted: #8f98a0;
+    --steam-discount-bg: #4c6b22;
+    --steam-discount-text: #beee11;
+}
+
+body {
+    background-color: var(--steam-bg-main) !important;
+    color: var(--steam-text-main) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Yuxarı Naviqasiya və Aşağı Footer hissəsi */
+.navbar {
+    background-color: var(--steam-bg-dark) !important;
+    border-bottom: 1px solid var(--steam-border) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-brand {
+    color: var(--steam-accent-blue) !important;
+    letter-spacing: 1.5px;
+}
+
+.nav-link:hover {
+    color: var(--steam-accent-blue) !important;
+}
+
+footer.footer {
+    background-color: var(--steam-bg-dark);
+    border-top: 1px solid var(--steam-border) !important;
+    color: var(--steam-text-muted) !important;
+}
+
+/* Oyun Kartları və Form Konteynerləri */
+.card, .game-card, .steam-form-card, .steam-detail-card {
+    background-color: var(--steam-card-bg) !important;
+    border: 1px solid var(--steam-border) !important;
+    border-radius: 6px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .game-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--steam-accent-blue) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+/* Endirim və Qiymət Blokları */
+.discount-badge {
+    background-color: var(--steam-discount-bg);
+    color: var(--steam-discount-text);
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.price-box {
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 4px 10px;
+    border-radius: 3px;
+}
+
+/* Düymələr */
+.btn-steam, .btn-steam-primary {
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+    .btn-steam:hover, .btn-steam-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
+/* Form Input və Select sahələri */
+.form-control, .form-select {
+    background-color: #2a475e !important;
+    border: 1px solid #3d6c8e !important;
+    color: #ffffff !important;
+}
+
+    .form-control::placeholder {
+        color: #8f98a0;
+    }
+
+    .form-control:focus, .form-select:focus {
+        background-color: #2a475e !important;
+        border-color: var(--steam-accent-blue) !important;
+        box-shadow: 0 0 0 0.2rem rgba(102, 192, 244, 0.25) !important;
+        color: #ffffff !important;
+    }
+
+/* Xüsusi Scrollbar (Brauzer sürüşdürmə çubuğu) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--steam-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--steam-border);
+    border-radius: 5px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--steam-accent-blue);
+    }
